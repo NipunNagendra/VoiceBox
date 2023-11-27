@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import wave, sys
+import wave
  
 def visualize(path: str):
    
@@ -23,31 +23,31 @@ def visualize(path: str):
      
     plt.xlabel("Time")
     plt.plot(time, signal)
-    """lowerv=np.where(time>=7.8)[0]
-    upperv=np.where(time>=8.1)[0]
-
-    print(lowerv[0])
-    print(upperv[0])
-
-    plt.plot(time[lowerv[0]:upperv[0]], signal[lowerv[0]:upperv[0]])"""
+    loudness_high=np.abs(signal).max()
+    loudness_low=np.abs(signal).min()
+    avg=((loudness_high-loudness_low)/2)
+    print(loudness_high, loudness_low, avg)
+    plt.axhline(y=avg, color='r', linestyle='-')
+    plt.axhline(y=-avg, color='r', linestyle='-')
 
     plt.show()
-    return time, signal
+    return time, signal, avg
 
-def volumeSpikes(time, signal):
+def volumeSpikes(time, signal, avg):
     spikes=[]
     mean=np.mean(signal)
-    threshold=0.8
+    threshold=0.4
     index=0
+    exceedingState=False
     while(index<len(signal)):
-        if ((signal[i]-mean)/mean)>=threshold:
-            spikes.append(time[i])
-            i+=1
+        if ((np.abs(signal[index])-avg)/avg)>=threshold:
+            spikes.append(time[index])
+            index+=np.where(time>=time[index]+0.1)[0][0]
         else:
-            index
+            index+=1
     return spikes
  
 if __name__ == "__main__":
-    time, signal = visualize("VoiceAudioTest.wav")
-    print(volumeSpikes(time, signal))
+    time, signal, avg = visualize("VoiceAudioTest.wav")
+    print(volumeSpikes(time, signal, avg))
     
