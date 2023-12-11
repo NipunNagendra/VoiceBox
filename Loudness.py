@@ -49,5 +49,5 @@ def volumeSpikes(time, signal, avg):
 
 
 if __name__ == "__main__":
-    time, signal, avg = visualize("VoiceAudioTest.wav")
+    time, signal, avg = visualize("myprosody/dataset/audioFiles/VoiceAudioTest.wav")
     print(volumeSpikes(time, signal, avg))
