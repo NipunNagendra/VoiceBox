@@ -20,10 +20,17 @@ from django.urls import path
 from django.conf.urls.static import static
 import sys
 
+from django.conf.urls.static import static
+from django.conf import settings
+
 sys.path.append(".")
-from main.views import test
+from main.views import home
 
 urlpatterns = [
-    path('', test),
+    path('', home),
     path('admin/', admin.site.urls),
 ]
+
+# only in development
+if settings.DEBUG:
+	urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
