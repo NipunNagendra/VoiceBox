@@ -25,10 +25,12 @@ from django.conf import settings
 
 sys.path.append(".")
 from main.views import home
+from main.views import main_summary
 
 urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
+    path('main-summary/', main_summary),
 ]
 
 # only in development

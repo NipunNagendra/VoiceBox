@@ -12,5 +12,8 @@ def home(request):
             fs = FileSystemStorage()
             file = fs.save(request_file.name, request_file)
             fileurl = fs.url(file)
-            return render(request, 'customize.html', {})
+            return render(request, 'main-summary.html', {})
     return render(request, 'uploadFile.html', {})
+
+def main_summary(request):
+    return render(request, 'main-summary.html', {})
