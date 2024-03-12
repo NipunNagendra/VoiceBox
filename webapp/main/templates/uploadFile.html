@@ -29,9 +29,19 @@
         {{new_form.as_p}}
 
         <input type = "file" name = 'document' class="file-input">
-        <p><button type = "submit" class = "button-upload">Upload</button></p>
+        <p><button type = "submit" class = "button-upload" onclick="showLoading()">Upload</button></p>
+        <p style="color: red;">{{ error }}</p>
 </form>
+            <div class="loading-container" id="loadingContainer">
+            <div class="loading-spinner"></div>
+            <p>Loading...</p>
+        </div>
 </div>
-
+    <script>
+        function showLoading() {
+            const loadingContainer = document.getElementById('loadingContainer');
+            loadingContainer.style.display = 'block';
+        }
+    </script>
 </body>
 </html>
