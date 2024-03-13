@@ -9,17 +9,17 @@
 </head>
     <body class="summary-body">
     <h1 class="voicebox-name-corner">VOICEBOX</h1>
-    <button class="download-button">Download</button>
+    <button class="download-button" onclick="downloadCSV()">Download CSV</button>
     <div class="container-side-card">
         <div class="sidenav">
-            <a href="">Summary</a>
-            <a href="">Content</a>
+            <a href="/main-summary">Summary</a>
+            <a href="/content">Content</a>
             <a href="">Voice</a>
             <a href="">Face</a>
         </div>
         <div class="card-container">
             <div class="card">
-                <h2 class="card-title">{{ speakingpercentage }}%</h2>
+                <h2 class="card-title">{{ speaking_percentage }}%</h2>
                 <p class="card-description">of time spoken</p>
             </div>
 
@@ -37,17 +37,36 @@
                 <h2 class="card-title">{{ gender }}</h2>
                 <p class="card-description">speaker gender</p>
             </div>
-
-            <div class="card">
+            <div class="card" >
                 <h2 class="card-title">{{ intonation }}</h2>
                 <p class="card-description">intonation type</p>
             </div>
 
             <div class="card">
                 <h2 class="card-title">{{ number_of_pauses }}</h2>
-                <p class="card-description">number of pauses</p>
+                <p class="card-description"># of pauses</p>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">{{ number_of_syllables }}</h2>
+                <p class="card-description"># of syllables</p>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">{{ spikes }}</h2>
+                <p class="card-description"># of volume spikes</p>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">{{ dips }}</h2>
+                <p class="card-description"># of volume dips</p>
             </div>
         </div>
     </div>
+    <script>
+    function downloadCSV() {
+        window.location.href = "/download-csv/";
+    }
+</script>
 </body>
 </html>

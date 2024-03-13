@@ -26,11 +26,16 @@ from django.conf import settings
 sys.path.append(".")
 from main.views import home
 from main.views import main_summary
+from main.views import content
+from main.views import download_csv
+
 
 urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
     path('main-summary/', main_summary),
+    path('content', content),
+    path('download-csv/', download_csv, name='download_csv'),
 ]
 
 # only in development

@@ -3,7 +3,7 @@ import numpy as np
 import wave
 
 
-def visualize(path: str):
+def normalize(path: str):
     raw = wave.open(path)
 
     signal = raw.readframes(-1)
@@ -30,11 +30,11 @@ def visualize(path: str):
     plt.axhline(y=avg, color='r', linestyle='-')
     plt.axhline(y=-avg, color='r', linestyle='-')
 
-    plt.show()
     return time, signal, avg
 
 
-def volumeSpikes(time, signal, avg):
+def volumeSpikes(path):
+    time, signal, avg = normalize(path)
     spikes = []
     mean = np.mean(signal)
     threshold = 0.4
@@ -48,6 +48,16 @@ def volumeSpikes(time, signal, avg):
     return spikes
 
 
-if __name__ == "__main__":
-    time, signal, avg = visualize("myprosody/dataset/audioFiles/VoiceAudioTest.wav")
-    print(volumeSpikes(time, signal, avg))
+def volumeDips(path):
+    time, signal, avg = normalize(path)
+    dips = []
+    mean = np.mean(signal)
+    threshold = 0.4
+    index = 0
+    while (index < len(signal)):
+        if ((np.abs(signal[index]) - avg) / avg) <= -threshold:
+            dips.append(time[index])
+            index += np.where(time >= time[index] + 0.1)[0][0]
+        else:
+            index += 1
+    return dips

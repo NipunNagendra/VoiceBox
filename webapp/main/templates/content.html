@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/styles.css' %}">
+
+</head>
+    <body class="summary-body">
+    <h1 class="voicebox-name-corner">VOICEBOX</h1>
+    <button class="download-button" onclick="downloadCSV()">Download CSV</button>
+    <div class="container-side-card">
+        <div class="sidenav">
+            <a href="/main-summary">Summary</a>
+            <a href="/content">Content</a>
+            <a href="">Voice</a>
+            <a href="">Face</a>
+        </div>
+     <div class="container-card-score">
+        <header>
+            <h1>Engagement Score</h1>
+            <p>Measures how good the content of your speech is through leveraging multiple factors</p>
+            <div class="score">
+                <p class="score-num">{{ overall_score }} </p>
+                <p> / 100</p>
+            </div>
+            <div class="card">
+                <h2 class="card-title">{{ sentiment }}</h2>
+                <p class="card-description">word connotations</p>
+            </div>
+        </header>
+         <p class="transcript">{{ transcript }}</p>
+        <div class="details">
+            <div class="score-card">
+                <h2>{{ total_words }}</h2>
+                <p>total words</p>
+            </div>
+            <div class="score-card">
+                <h2>{{ average_word_length }}</h2>
+                <p>average word length</p>
+            </div>
+            <div class="score-card">
+                <h2>{{ average_sentence_length }}</h2>
+                <p>average sentence length</p>
+            </div>
+            <div class="score-card">
+                <h2>{{ lexical_diversity_score }}%</h2>
+                <p>of vocabulary is unique</p>
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+<script>
+    function downloadCSV() {
+        window.location.href = "/download-csv/";
+    }
+</script>
+</body>
+</html>
