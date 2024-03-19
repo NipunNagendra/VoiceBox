@@ -7,7 +7,7 @@ from django.core.files.storage import FileSystemStorage
 import os
 
 from moviepy.video.io.VideoFileClip import VideoFileClip
-
+#TODO: download ffmpeg and change the path if necessary
 os.environ["IMAGEIO_FFMPEG_EXE"] = "/usr/bin/ffmpeg"
 from SemanticVoiceAnalysis import *
 from SemanticContentAnalysis import *
@@ -39,6 +39,7 @@ def main_summary(request):
     if 'df' not in request.session:
         video_path = fs.path('speech_video.mp4')
         video = VideoFileClip(video_path)
+        #TODO: change the path to the audio file
         audio_path = '/Users/nipun/PycharmProjects/VoiceBox/webapp/media/myprosody/dataset/audioFiles/speech_audio.wav'
         video.audio.write_audiofile(audio_path)
         df = voiceAnalysis(r'speech_audio')
