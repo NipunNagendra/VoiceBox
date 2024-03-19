@@ -6,7 +6,7 @@
   --accent: #88d4e3;
   --accent-dark: #004963;
   --accent-light: #dbf2f7;
-  --off-white: #ded3cb;
+  --off-white: rgb(229,226,213);
   --title-font: Raleway, sans-serif;
   --body-font: poppins, sans-serif
 }

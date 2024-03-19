@@ -17,18 +17,18 @@ def normalize(path: str):
         num=len(signal)
     )
 
-    plt.figure(1)
-
-    plt.title("Sound Wave")
-
-    plt.xlabel("Time")
-    plt.plot(time, signal)
+    # plt.figure(1)
+    #
+    # plt.title("Sound Wave")
+    #
+    # plt.xlabel("Time")
+    # plt.plot(time, signal)
     loudness_high = np.abs(signal).max()
     loudness_low = np.abs(signal).min()
     avg = ((loudness_high - loudness_low) / 2)
-    print(loudness_high, loudness_low, avg)
-    plt.axhline(y=avg, color='r', linestyle='-')
-    plt.axhline(y=-avg, color='r', linestyle='-')
+    # print(loudness_high, loudness_low, avg)
+    # plt.axhline(y=avg, color='r', linestyle='-')
+    # plt.axhline(y=-avg, color='r', linestyle='-')
 
     return time, signal, avg
 
